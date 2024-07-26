@@ -9,15 +9,12 @@ $password = sha1($password);
 $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
 $result = mysqli_query($conn, $sql);
 if (!$result) {
-    $response = array("success" => false, "message" => );
     echo "Something went wrong!";
     exit;
 }
 
 $row_count = mysqli_num_rows($result);
 if ($row_count == 0) {
-    
-    $response = array("success" => false, "message" => );
     echo "Login failed! Invalid email or password.";
     exit;
 }
