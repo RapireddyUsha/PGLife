@@ -12,26 +12,27 @@ $gender = $_POST['gender'];
 $sql = "SELECT * FROM users WHERE email='$email'";
 $result = mysqli_query($conn, $sql);
 if (!$result) {
-    $response = array("success" => false, "message" => "Something went wrong!");
-    echo json_encode($response);
-    return;
+    $response = array("success" => false, "message" => );
+    echo "Something went wrong!";
+    exit;
 }
 
 $row_count = mysqli_num_rows($result);
 if ($row_count != 0) {
-    $response = array("success" => false, "message" => "This email id is already registered with us!");
-    echo json_encode($response);
-    return;
+    echo "This email id is already registered with us!";
+    exit;
 }
 
 $sql = "INSERT INTO users (email, password, full_name, phone, gender, college_name) VALUES ('$email', '$password', '$full_name', '$phone', '$gender', '$college_name')";
 $result = mysqli_query($conn, $sql);
 if (!$result) {
-    $response = array("success" => false, "message" => "Something went wrong!");
-    echo json_encode($response);
-    return;
+    echo  "Something went wrong!";
+    exit;
 }
 
-$response = array("success" => true, "message" => "Your account has been created successfully!");
-echo json_encode($response);
+echo "Your account has been created successfully!";
+?>
+
+Click <a href="../index.php">here</a> to continue.
+<?php
 mysqli_close($conn);
